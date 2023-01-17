@@ -1,0 +1,26 @@
+public class Solution {
+    public static BinaryTreeNode<Integer> lcaOfThreeNodes(BinaryTreeNode<Integer> root, int node1, int node2,
+            int node3) {
+        // Write your code here.
+        if(root==null) 
+            return root;
+        if(root.data==node1 || root.data==node2 || root.data==node3)
+            return root;  
+        BinaryTreeNode<Integer> leftsearch = lcaOfThreeNodes(root.left,node1,node2,node3);
+        BinaryTreeNode<Integer> rightsearch = lcaOfThreeNodes(root.right,node1,node2,node3);
+        if(leftsearch==root || rightsearch==root)
+            return root;
+        else if(leftsearch !=null && rightsearch == null){
+            return leftsearch;
+        }
+        else if(rightsearch !=null && leftsearch == null){         
+            return rightsearch;
+        }
+        else if(rightsearch ==null && leftsearch == null){
+            return null;
+        }
+        else{
+            return root;
+        }
+    }
+}
